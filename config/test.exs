@@ -18,7 +18,7 @@ config :my_app, MyApp.Repo,
 config :my_app, MyAppWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "eoWtIEGdAmUMzxNiOoUhtz1Rl9MEXHpdV16tXZDqBvSeaQCqfWYovDAQLUMF0K/Z",
-  server: false
+  server: true
 
 # In test we don't send emails.
 config :my_app, MyApp.Mailer, adapter: Swoosh.Adapters.Test
@@ -31,3 +31,7 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Wallaby config
+config :my_app, :sandbox, Ecto.Adapters.SQL.Sandbox
+config :wallaby, driver: Wallaby.Chrome, chromedriver: [headless: false]
