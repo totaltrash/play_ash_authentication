@@ -32,6 +32,13 @@ config :logger, level: :warning
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
 
+# Ensure Ash doesn't spawn tasks during tests when executing requests
+config :ash, :disable_async?, true
+
 # Wallaby config
 config :my_app, :sandbox, Ecto.Adapters.SQL.Sandbox
-config :wallaby, driver: Wallaby.Chrome, chromedriver: [headless: false]
+
+config :wallaby,
+  driver: Wallaby.Chrome,
+  chromedriver: [headless: true],
+  js_logger: nil

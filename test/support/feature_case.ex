@@ -10,6 +10,7 @@ defmodule Test.FeatureCase do
     quote do
       use Wallaby.DSL
       import Wallaby.Feature
+      import Test.Factory
 
       # The default endpoint for testing
       @endpoint MyAppWeb.Endpoint

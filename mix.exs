@@ -51,6 +51,10 @@ defmodule MyApp.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ash, "~> 2.5"},
+      {:ash_postgres, "~> 1.3"},
+      {:ash_phoenix, "~> 1.2"},
+      {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]},
       {:wallaby, "~> 0.30.0", runtime: false, only: :test}
     ]
   end
