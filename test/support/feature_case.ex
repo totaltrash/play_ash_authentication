@@ -11,6 +11,7 @@ defmodule Test.FeatureCase do
       use Wallaby.DSL
       import Wallaby.Feature
       import Test.Factory
+      import Test.FeatureHelpers
 
       # The default endpoint for testing
       @endpoint MyAppWeb.Endpoint

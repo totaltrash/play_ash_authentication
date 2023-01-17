@@ -2,8 +2,7 @@ defmodule MyAppWeb.PageController do
   use MyAppWeb, :controller
 
   def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false)
+    posts = MyApp.Blog.Post.read_all!()
+    render(conn, :home, posts: posts, layout: false)
   end
 end

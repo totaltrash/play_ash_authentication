@@ -1,4 +1,4 @@
-defmodule MyAppWeb.PostLive do
+defmodule MyAppWeb.Admin.PostLive do
   use MyAppWeb, :live_view
 
   @impl true

@@ -630,4 +630,23 @@ defmodule MyAppWeb.CoreComponents do
   defp input_equals?(val1, val2) do
     Phoenix.HTML.html_escape(val1) == Phoenix.HTML.html_escape(val2)
   end
+
+  # My components
+
+  @doc """
+  Renders a date as to a given format.
+
+  ## Examples
+
+      <.format_date date={@some_date}></.format_date>
+  """
+
+  attr :date, :any, required: true
+  attr :format, :string, default: "%d/%m/%Y"
+
+  def format_date(assigns) do
+    ~H"""
+    <%= Calendar.strftime(@date, @format) %>
+    """
+  end
 end
