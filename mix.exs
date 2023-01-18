@@ -54,6 +54,8 @@ defmodule MyApp.MixProject do
       {:ash, "~> 2.5"},
       {:ash_postgres, "~> 1.3"},
       {:ash_phoenix, "~> 1.2"},
+      {:ash_authentication, "~> 3.6"},
+      {:ash_authentication_phoenix, "~> 1.4"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]},
       {:wallaby, "~> 0.30.0", runtime: false, only: :test}
     ]

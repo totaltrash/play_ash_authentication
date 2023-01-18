@@ -21,12 +21,14 @@ defmodule MyAppWeb do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Phoenix.Router, helpers: true
+      use AshAuthentication.Phoenix.Router
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
+      import MyAppWeb.Security.Authentication
     end
   end
 

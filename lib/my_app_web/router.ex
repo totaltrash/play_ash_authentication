@@ -8,6 +8,7 @@ defmodule MyAppWeb.Router do
     plug :put_root_layout, {MyAppWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :load_from_session
   end
 
   pipeline :api do
@@ -17,7 +18,15 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
+    sign_in_route path: "/login"
+    sign_out_route AuthController, "/logout"
+    auth_routes_for MyApp.Accounts.User, to: AuthController, path: "/auth"
     get "/", PageController, :home
+  end
+
+  scope "/", MyAppWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
     live "/admin/posts", Admin.PostLive, :index
   end
 

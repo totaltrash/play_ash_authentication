@@ -4,6 +4,6 @@ defmodule Test.Feature.Admin.PostsTest do
   feature "public are unauthorized to view blog posts", %{session: session} do
     session
     |> visit(~p"/admin/posts/")
-    |> assert_forbidden()
+    |> assert_text("Sign in")
   end
 end

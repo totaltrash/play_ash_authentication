@@ -4,5 +4,6 @@ defmodule MyApp.Accounts.Registry do
 
   entries do
     entry MyApp.Accounts.User
+    entry MyApp.Accounts.Token
   end
 end

@@ -17,7 +17,9 @@ defmodule MyApp.Application do
       # Start Finch
       {Finch, name: MyApp.Finch},
       # Start the Endpoint (http/https)
-      MyAppWeb.Endpoint
+      MyAppWeb.Endpoint,
+      # Start the AshAuthentication supervisor
+      {AshAuthentication.Supervisor, otp_app: :my_app}
       # Start a worker by calling: MyApp.Worker.start_link(arg)
       # {MyApp.Worker, arg}
     ]
