@@ -2,14 +2,26 @@ defmodule Test.Factory do
   alias MyApp.{Accounts, Blog}
 
   def insert_user(attr \\ []) do
+    suffix = System.unique_integer([:positive])
+    raw_password = "password#{suffix}"
+
     attr =
       build_attr(attr,
-        username: "someuser",
-        password: "password",
-        name: "Some User"
+        username: "user#{suffix}",
+        password: raw_password,
+        name: "User #{suffix}",
+        with_raw_password: false
       )
 
-    Accounts.User.create!(attr.username, attr.password, attr.name)
+    user =
+      Accounts.User.create!(attr.username, attr.password, attr.name)
+      |> field_to_string(:username)
+
+    if attr.with_raw_password do
+      {user, raw_password}
+    else
+      user
+    end
   end
 
   def insert_post(attr \\ []) do
@@ -44,11 +56,11 @@ defmodule Test.Factory do
     schema =
       Enum.map(schema, fn schema_item ->
         case schema_item do
-          {key, default} when is_binary(default) ->
-            {key, [default: default]}
+          schema_item when is_list(schema_item) ->
+            schema_item
 
-          other ->
-            other
+          {key, default} ->
+            {key, [default: default]}
         end
       end)
 
@@ -56,5 +68,10 @@ defmodule Test.Factory do
     attr
     |> NimbleOptions.validate!(schema)
     |> Enum.into(%{})
+  end
+
+  # convert ci_string (and other string wrapper types) to string
+  defp field_to_string(item, field) do
+    Map.put(item, field, to_string(Map.get(item, field)))
   end
 end

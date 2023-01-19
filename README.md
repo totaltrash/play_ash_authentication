@@ -38,11 +38,11 @@ Write some Wallaby features to verify the above. We haven't installed Ash Authen
 
 Tweak the page_controller_test to pass (although it is redundant as we're covering this feature with a Wallaby test).
 
-## Install Ash Authentication
+## Install Ash Authentication [1a4f8c6](https://github.com/totaltrash/play_ash_authentication/commit/1a4f8c68b9961bf69b825ca369e2da6f39e88ca2)
 
 Our aim here is to install Ash Authentication and have the failing test from the previous commit pass - which should just require a plug to look for a current user for the admin route.
 
-Install Ash Authentication, which comes in two parts, the core `ash_authentication`, and `ash_authentication_phoenix` - the latter has helpers for if you're running Phoenix. See the [ash_authentication](https://ash-hq.org/docs/guides/ash_authentication/latest/tutorials/getting-started-with-authentication) and [ash_authentication_phoenix ](https://ash-hq.org/docs/guides/ash_authentication/latest/integrating-ash-authentication-and-phoenix) on ash-hq
+Install Ash Authentication, which comes in two parts, the core `ash_authentication`, and `ash_authentication_phoenix` - the latter has helpers for if you're running Phoenix. See the [ash_authentication](https://ash-hq.org/docs/guides/ash_authentication/latest/tutorials/getting-started-with-authentication) and [ash_authentication_phoenix ](https://ash-hq.org/docs/guides/ash_authentication/latest/integrating-ash-authentication-and-phoenix) doco on ash-hq
 
 Modify the user resource and create a user_token, as per the doco. I'll use the username in the existing user resource as the identity for authentication (rather than email). Add a create action that will be used for tests or could be used as the implementation in an app where user access is controlled by a system owner (rather than self registration).
 
@@ -59,3 +59,7 @@ Modify test factory to suit the updated user.
 Now my failing test case passes - when an unauthenticated user hits the protected route, they are redirected to the login.
 
 Next, we'll flesh out the test cases for logging in and self registration, and then work on the implementation.
+
+## Test cases for authentication
+
+Write a handful of Wallaby features for testing login, logout and register flows

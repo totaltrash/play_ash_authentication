@@ -4,8 +4,7 @@ defmodule MyAppWeb.AuthController do
 
   require Logger
 
-  def success(conn, activity, user, _token) do
-    IO.inspect(activity)
+  def success(conn, _activity, user, _token) do
     return_to = get_session(conn, :return_to) || ~p"/"
 
     conn
